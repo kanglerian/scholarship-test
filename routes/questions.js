@@ -5,17 +5,26 @@ const { Questions, Categories } = require('../models');
 
 /* GET questions listing. */
 router.get('/', async (req, res) => {
-  try {
-    const questions = await Questions.findAll({
+  const { category } = req.query;
+  let questions;
+  if (category) {
+    questions = await Questions.findAll({
+      where: {
+        category_id: category,
+      },
       include: [
         { model: Categories, as: 'category' }
       ],
     });
-    return res.status(200).json(questions);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Internal server error' });
+  } else {
+    questions = await Questions.findAll({
+      include: [
+        { model: Categories, as: 'category' }
+      ],
+    });
   }
+
+  return res.status(200).json(questions);
 });
 
 /* GET question. */

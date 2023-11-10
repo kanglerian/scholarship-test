@@ -1,24 +1,59 @@
 const express = require('express');
 const router = express.Router();
 
-const { Answers, Questions } = require('../models');
+const { Answers, Questions, Categories } = require('../models');
 
 /* GET answers listing. */
 router.get('/', async (req, res) => {
   const answers = await Answers.findAll({
     include: [
-      { model: Questions, as: 'question' }
+      {
+        model: Questions,
+        as: "question",
+        include: [
+          { model: Categories, as: 'category' }
+        ],
+      },
     ]
   });
   return res.status(200).json(answers);
 });
 
-/* GET anwer. */
+/* GET answer. */
 router.get('/:id', async (req, res) => {
   try {
     const answer = await Answers.findByPk(req.params.id, {
       include: [
-        { model: Questions, as: 'question' }
+        {
+          model: Questions,
+          as: "question",
+          include: [
+            { model: Categories, as: 'category' }
+          ],
+        },
+      ]
+    });
+    return res.status(200).json(answer);
+  } catch (error) {
+    return res.status(500).json({ error: "Terjadi kesalahan pada server." });
+  }
+});
+
+/* GET anwer. */
+router.get('/question/:id', async (req, res) => {
+  try {
+    const answer = await Answers.findAll({
+      where: {
+        question_id: req.params.id
+      },
+      include: [
+        {
+          model: Questions,
+          as: "question",
+          include: [
+            { model: Categories, as: 'category' }
+          ],
+        },
       ]
     });
     return res.status(200).json(answer);
