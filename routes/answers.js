@@ -88,28 +88,6 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
-/* DELETE answer by question. */
-router.delete('/question/:id', async (req, res) => {
-  try {
-    const answer = await Answers.destroy({
-      where: {
-        question_id: req.params.id
-      }
-    });
-    if (answer) {
-      return res.json({
-        message: `Semua data jawaban berhasil dihapus.`
-      });
-    } else {
-      return res.status(404).json({
-        message: `Data jawaban tidak ditemukan.`
-      });
-    }
-  } catch (error) {
-    return res.status(500).json({ error: "Terjadi kesalahan pada server." });
-  }
-});
-
 /* DELETE answer. */
 router.delete('/:id', async (req, res) => {
   try {

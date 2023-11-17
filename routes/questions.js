@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Questions, Categories } = require('../models');
+const { Questions, Categories, Answers } = require('../models');
 
 /* GET questions listing. */
 router.get('/', async (req, res) => {
@@ -76,9 +76,14 @@ router.delete('/:id', async (req, res) => {
         id: req.params.id
       }
     });
+    await Answers.destroy({
+      where: {
+        question_id: req.params.id
+      }
+    });
     if (question) {
       return res.json({
-        message: `Data pertanyaan berhasil dihapus.`
+        message: `Data pertanyaan berhasil dihapus.`,
       });
     } else {
       return res.status(404).json({

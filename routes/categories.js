@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Categories } = require('../models');
+const { Categories, Questions, Answers } = require('../models');
 
 /* GET categories listing. */
 router.get('/', async (req, res) => {
@@ -51,6 +51,16 @@ router.delete('/:id', async (req, res) => {
         const category = await Categories.destroy({
             where: {
                 id: req.params.id
+            }
+        });
+        const questions = await Questions.destroy({
+            where: {
+                category_id: id,
+            }
+        });
+        await Answers.destroy({
+            where: {
+                question_id: questions.id
             }
         });
         if (category) {
