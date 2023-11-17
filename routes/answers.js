@@ -89,7 +89,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 /* DELETE answer by question. */
-router.delete('question/:id', async (req, res) => {
+router.delete('/question/:id', async (req, res) => {
   try {
     const answer = await Answers.destroy({
       where: {
