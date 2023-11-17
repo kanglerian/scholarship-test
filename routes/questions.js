@@ -44,9 +44,10 @@ router.get('/:id', async (req, res) => {
 /* POST question. */
 router.post('/', async (req, res) => {
   try {
-    await Questions.create(req.body);
+    const question = await Questions.create(req.body);
     return res.status(201).json({
-      message: `Data pertanyaan berhasil ditambahkan.`
+      message: `Data pertanyaan berhasil ditambahkan.`,
+      id: question.id
     });
   } catch (error) {
     return res.status(500).json({ error: "Terjadi kesalahan pada server." });
