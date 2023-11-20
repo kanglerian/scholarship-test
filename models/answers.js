@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Answers.belongsTo(models.Questions, { foreignKey: 'question_id', as: 'question' });
-      Answers.hasMany(models.Records, { foreignKey: 'answer_id' });
+      Answers.hasMany(models.Records, { foreignKey: 'answer_id', onDelete: 'RESTRICT' });
     }
   }
   Answers.init({
