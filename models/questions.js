@@ -5,9 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Questions extends Model {
     static associate(models) {
-      Questions.belongsTo(models.Categories, { foreignKey: 'category_id', as: 'category', onDelete: 'CASCADE' });
-      Questions.hasMany(models.Answers, { foreignKey: 'question_id', onDelete: 'RESTRICT' });
-      Questions.hasMany(models.Records, { foreignKey: 'question_id', onDelete: 'RESTRICT' });
+      Questions.belongsTo(models.Categories, { foreignKey: 'category_id', as: 'category', onDelete: 'RESTRICT', });
+      Questions.hasMany(models.Answers, { foreignKey: 'question_id' });
+      Questions.hasMany(models.Records, { foreignKey: 'question_id' });
     }
   }
   Questions.init({

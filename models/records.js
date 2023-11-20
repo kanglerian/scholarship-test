@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Records extends Model {
     static associate(models) {
-      Records.belongsTo(models.Questions, { foreignKey: 'question_id', as: 'question', onDelete: 'CASCADE' });
-      Records.belongsTo(models.Answers, { foreignKey: 'answer_id', as: 'answer', onDelete: 'CASCADE' });
+      Records.belongsTo(models.Questions, { foreignKey: 'question_id', as: 'question', onDelete: 'RESTRICT', });
+      Records.belongsTo(models.Answers, { foreignKey: 'answer_id', as: 'answer', onDelete: 'RESTRICT', });
     }
   }
   Records.init({

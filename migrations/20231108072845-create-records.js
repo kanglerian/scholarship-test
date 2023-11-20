@@ -13,13 +13,28 @@ module.exports = {
         type: Sequelize.STRING
       },
       category_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id',
+          onDelete: 'RESTRICT'
+        }
       },
       question_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Questions',
+          key: 'id',
+          onDelete: 'RESTRICT'
+        }
       },
       answer_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Answers',
+          key: 'id',
+          onDelete: 'RESTRICT'
+        }
       },
       createdAt: {
         allowNull: false,

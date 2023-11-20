@@ -48,30 +48,14 @@ router.patch('/:id', async (req, res) => {
 /* DELETE category. */
 router.delete('/:id', async (req, res) => {
     try {
-        const category = await Categories.destroy({
+        await Categories.destroy({
             where: {
                 id: req.params.id
             }
         });
-        const questions = await Questions.destroy({
-            where: {
-                category_id: id,
-            }
+        return res.json({
+            message: `Data kategori berhasil dihapus.`
         });
-        await Answers.destroy({
-            where: {
-                question_id: questions.id
-            }
-        });
-        if (category) {
-            return res.json({
-                message: `Data kategori berhasil dihapus.`
-            });
-        } else {
-            return res.status(404).json({
-                message: `Data kategori tidak ditemukan.`
-            });
-        }
     } catch (error) {
         return res.status(500).json({ error: "Terjadi kesalahan pada server." });
     }

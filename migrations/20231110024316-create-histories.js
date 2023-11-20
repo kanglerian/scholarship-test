@@ -13,7 +13,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       category_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id',
+          onDelete: 'RESTRICT'
+        }
       },
       createdAt: {
         allowNull: false,
