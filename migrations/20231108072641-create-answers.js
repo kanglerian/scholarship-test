@@ -18,7 +18,7 @@ module.exports = {
         }
       },
       answer: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       correct: {
         type: Sequelize.BOOLEAN
