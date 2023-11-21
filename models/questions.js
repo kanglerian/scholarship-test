@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Questions.init({
     category_id: DataTypes.INTEGER,
-    question: DataTypes.STRING
+    question: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Questions',
