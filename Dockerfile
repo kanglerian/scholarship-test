@@ -13,7 +13,7 @@ RUN npm install
 # Salin kode aplikasi ke direktori kerja
 COPY . .
 
-# Expose port 3000 untuk aplikasi
+# Expose port 3333 untuk aplikasi
 EXPOSE 3333
 
 # Menjalankan aplikasi saat container dijalankan
