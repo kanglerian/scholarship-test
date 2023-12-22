@@ -13,7 +13,7 @@ Berikut adalah langkah-langkah untuk menginstal dan menjalankan aplikasi:
 
 2. **Menjalankan Aplikasi:**
 
-  - Buat folder proyek dengan nama `Project-School-API` dan pindah ke direktori proyek.
+  - Buat folder proyek dengan nama `scholarship-test` dan pindah ke direktori proyek.
   - Buat file `docker-compose.yml` dengan konten berikut:
 
 
