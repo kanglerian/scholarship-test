@@ -64,11 +64,12 @@ router.patch('/:id', async (req, res) => {
 });
 
 /* DELETE category. */
-router.delete('/:id', async (req, res) => {
+router.delete('/:identityUser/:categoryId', async (req, res) => {
     try {
         const history = await Histories.destroy({
             where: {
-                id: req.params.id
+                identity_user: req.params.identityUser,
+                category_id: req.params.categoryId
             }
         });
         if (history) {
